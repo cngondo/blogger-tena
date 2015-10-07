@@ -7,6 +7,11 @@ class ArticlesController < ApplicationController
   end
   def show
     @article = Article.find(params[:id])
+    # Due to the Rails’ mass-assignment protection, the article_id attribute of 
+    # the new Comment object needs to be manually assigned with the id of the Article.
+    @comment = Comment.new
+    @comment.article_id = @article.id
+
   end
   def new
     @article = Article.new
