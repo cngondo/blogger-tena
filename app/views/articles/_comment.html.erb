@@ -1,5 +1,8 @@
-<!-- The partial rendered in the show action -->
+<!-- The partial rendered in the show action of the comments controller -->
 <div>
   <h4>Comment by <%= comment.author_name %></h4>
   <p class="comment"><%= comment.body %></p>
+  <!-- Shows time in words, like sentences -->
+  <p>Posted <%= distance_of_time_in_words(comment.article.created_at, comment.created_at) %> later</p>
+
 </div>
