@@ -7,8 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+  <!-- To handle all flash messages coming from other views -->
+  <p class="flash"><%= flash.notice %></p>
+  <%= yield %>
 
 </body>
 </html>

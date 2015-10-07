@@ -2,7 +2,8 @@ class ArticlesController < ApplicationController
   include ArticlesHelper
 
   def index
-    @articles = Article.all
+    # @articles = Article.all
+    @articles = Article.order('created_at DESC')
   end
   def show
     @article = Article.find(params[:id])
@@ -15,13 +16,26 @@ class ArticlesController < ApplicationController
     # Make sure you have the params included
     @article = Article.new(article_params)
     @article.save
+    flash.notice = "Successfully created article"
     # This the page to redirect to
     redirect_to article_path(@article)
+  end
+  # For the edit action PATCH in browser
+  def update
+    @article = Article.find(params[:id])
+    @article.update(article_params)
+    # Sends a popup message after an update has occurred
+    flash.notice = "Article '#{@article.title}' Updated!"
+    # After updating, redirect to that article
+    redirect_to article_path(@article)
+  end
+  def edit
+    @article = Article.find(params[:id])
   end
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-
+    flash.notice = "Article deleted"
     redirect_to articles_path
   end
 end
