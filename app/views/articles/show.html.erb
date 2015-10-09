@@ -1,4 +1,11 @@
 <h1><%= @article.title %></h1>
+<!-- For the tags -->
+<p>
+  Tags:
+  <% @article.tags.each do |tag| %>
+    <%= link_to tag.name, tag_path(tag) %>
+  <% end %>
+</p>
 <p><%= @article.body %></p>
 <!-- Note the inheritance in the partial of the comments -->
 <!-- Gets the number of comments on the blog -->
